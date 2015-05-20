@@ -12,6 +12,7 @@ Enables the wordpress site admin to add to his site the Content Glass button.
 
 == Description ==
 Content Glass is a pending patent State Oriented Sharing platform that provide:
+
 1. Sharing tools
 2. API for developers
 3. Added value services.
