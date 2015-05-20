@@ -13,10 +13,8 @@ Enables the wordpress site admin to add to his site the Content Glass button.
 == Description ==
 Content Glass is a pending patent State Oriented Sharing platform that provide:
 
-1. Sharing tools
-
-2. API for developers
-
+1. Sharing tools.
+2. API for developers.
 3. Added value services.
 
 The CG platform is developed by Rhizome Networks LTD and you can read
@@ -25,14 +23,11 @@ more about this platform by visiting our website.
 Installing Content Glass module on your website provide the
 following advantages:
 
-1. Exposing CG sharing tools to visitors of your website
-
-2. Creating your own widgets or even your own CG app and run on your website
-
+1. Exposing CG sharing tools to visitors of your website.
+2. Creating your own widgets or even your own CG app and run on your website.
 3. Having applications framework on your website that can be used for running
    in-house of third party tools in the form of CG Widgets that extend your
    website without you need to change anything in the code of your website.
-
 4. Having the ability of dynamic state-oriented customization
    of website presence.
 
