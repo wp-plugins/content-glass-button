@@ -78,6 +78,7 @@ You enter the [registration](http://developers.contentglass.com/user/register) p
 2. Content Glass button floating button(can be any where on the screen).
 3. Setting page.
 4. Widgets page.
+5. Review widget demo.
 
 == Changelog ==
 
