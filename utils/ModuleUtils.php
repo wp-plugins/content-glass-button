@@ -11,7 +11,7 @@
 define( 'CG_BUTTON_DEFAULT_THEME', 'redmond' );
 define( 'CG_BUTTON_DEFAULT_LABEL', 'Content Glass' );
 define( 'CG_BUTTON_DEFAULT_VERSION', 'latest' );
-define( 'CG_BUTTON_DEFAULT_APP_ID', null );
+define( 'CG_BUTTON_DEFAULT_APP_ID', '5513c675ag580' );
 define( 'CG_BUTTON_DEFAULT_FONT_SIZE', 14 );
 define( 'CG_BUTTON_DEFAULT_LEFT', 0 );
 define( 'CG_BUTTON_DEFAULT_TOP', 0 );
@@ -33,12 +33,12 @@ define( 'CG_BUTTON_APPLICATION', 'cg_button_application' );
 
 //TODO for propduction chnage to false
 //define( 'CG_DEV_MODE', true );
-define('CG_DEV_MODE', false);
+define( 'CG_DEV_MODE', false );
 define( 'XDEBUG', 15996 );
 define( 'XDEBUG_TOKEN', '&XDEBUG_SESSION_START=' );
 
 //TODO for production change to api url
-define('CG_BUTTON_SERVER_URL', 'http://api.contentglass.com');
+define( 'CG_BUTTON_SERVER_URL', 'http://api.contentglass.com' );
 //define( 'CG_BUTTON_SERVER_URL', 'http://local.contentglass.com' );
 
 class CGModuleUtils {
