@@ -145,6 +145,11 @@ function cg_button_settings_page() {
 			<?php settings_fields( 'cg-button-settings-group' ); ?>
 			<?php do_settings_sections( 'cg-button-settings-group' ); ?>
 			<div id="cg-wordpress-plugin-notification-message" hidden="hidden"></div>
+			<p>
+				For trial period you can use the trial app id: <b><?php echo esc_attr( CG_BUTTON_DEFAULT_APP_ID )?></b> and register later
+				<a href="http://www.contentglass.com/user/login" target="_blank">here</a> for creating your own app Id. <br>Note
+				that test App ID is for testing purpose only. Content associated with the test App ID may not preserved.
+			</p>
 			<table class="form-table">
 				<tr valign="top">
 					<th scope="row">APP Id <a href="#" onclick="wordPressCgPlugin.openQuickRegistration()"

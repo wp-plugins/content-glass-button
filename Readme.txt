@@ -1,6 +1,6 @@
 === Plugin Name ===
 Contributors: Rhizome Networks
-Donate link: http://www.rhizomenet.com/company/home
+Donate link: http://www.contentglass.com
 Tags: Social Sharing
 Version: 1.0.0
 Requires at least: 3.1
