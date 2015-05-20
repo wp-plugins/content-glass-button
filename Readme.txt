@@ -61,7 +61,7 @@ Method 1:
 
 Method 2:
 
-1. Down the plugin zip from the wordpress plugin repository.
+1. Download the plugin zip from the wordpress plugin repository.
 2. Extract the zip content into `/wp-content/plugins/content-glass-button`
    directory (you may be needed to create this directory).
 3. Activate the plugin through the 'Plugins' menu in WordPress
