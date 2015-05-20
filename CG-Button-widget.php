@@ -10,7 +10,7 @@
 
 define( 'CG_BUTTON_WIDGET_ENABLE', 'cg_button_widget_enable' );
 
-define( 'CG_WIDGET_DESCRIPTION', 'TEST' );
+define( 'CG_WIDGET_DESCRIPTION', 'A widget for showing Content Glass button.' );
 define( 'CG_WIDGET_DEFAULT_TEXT', 'Content Glass' );
 define( 'CG_WIDGET_DEFAULT_SIZE', 14 );
 
@@ -45,11 +45,13 @@ class CgButtonWidget extends WP_Widget {
 		} else {
 			$size = __( CG_WIDGET_DEFAULT_SIZE, 'cg_widget_domain' );
 		}
+		//We don't use escaping function in the next 2 echo's because it destroy the structure and print as plain text.
+		//So ignore the phpcs warnings.
 		// before and after widget arguments are defined by themes
-		echo esc_attr( $args['before_widget'] );
+		echo( $args['before_widget'] );
 		// This is where you run the code and display the output
 		echo ent2ncr( CgModuleUtils::get_widget_script( $title, $size ) );
-		echo esc_attr( $args['after_widget'] );
+		echo( $args['after_widget'] );
 	}
 
 	/**
@@ -75,14 +77,16 @@ class CgButtonWidget extends WP_Widget {
 		// Widget admin form
 		?>
 		<p>
-			<label for="<?php echo esc_attr( $this->get_field_id( CG_WIDGET_TITLE ) ); ?>"><?php esc_attr( 'Button Text:' ); ?></label>
+			<label
+				for="<?php echo esc_attr( $this->get_field_id( CG_WIDGET_TITLE ) ); ?>"><?php esc_attr( 'Button Text:' ); ?></label>
 			<input
 				class="widefat"
 				id="<?php echo esc_attr( $this->get_field_id( CG_WIDGET_TITLE ) ); ?>"
 				name="<?php echo esc_attr( $this->get_field_name( CG_WIDGET_TITLE ) ); ?>"
 				type="text"
 				value="<?php echo esc_attr( $title ); ?>"/>
-			<label for="<?php echo esc_attr( $this->get_field_id( CG_WIDGET_SIZE ) ); ?>"><?php esc_attr( 'Text size:' ); ?></label>
+			<label
+				for="<?php echo esc_attr( $this->get_field_id( CG_WIDGET_SIZE ) ); ?>"><?php esc_attr( 'Text size:' ); ?></label>
 			<input
 				class="widefat"
 				id="<?php echo esc_attr( $this->get_field_id( CG_WIDGET_SIZE ) ); ?>"
