@@ -31,13 +31,13 @@ define( 'CG_BUTTON_ENABLE', 'cg_button_enable' );
 define( 'CG_BUTTON_APPLICATION_DATA', 'cg_button_application_data' );
 define( 'CG_BUTTON_APPLICATION', 'cg_button_application' );
 
-define( 'CG_DEV_MODE', true );
-//define('CG_DEV_MODE', false);
+//define( 'CG_DEV_MODE', true );
+define( 'CG_DEV_MODE', false );
 define( 'XDEBUG', 15996 );
 define( 'XDEBUG_TOKEN', '&XDEBUG_SESSION_START=' );
 
-//define('CG_BUTTON_SERVER_URL', 'http://api.contentglass.com');
-define( 'CG_BUTTON_SERVER_URL', 'http://local.contentglass.com' );
+define(' CG_BUTTON_SERVER_URL', 'http://api.contentglass.com' );
+//define( 'CG_BUTTON_SERVER_URL', 'http://local.contentglass.com' );
 
 class CGModuleUtils {
 	public static function get_system_scripts() {

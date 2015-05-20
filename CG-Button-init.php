@@ -13,6 +13,7 @@ require( 'utils/ModuleUtils.php' );
 require( 'CG-Button.php' );
 require( 'CG-Button-widget.php' );
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
+define( 'PLUGIN_DIRECTORY', 'content-glass-button' );
 
 echo ent2ncr( CGModuleUtils::get_system_scripts() );
 
@@ -37,9 +38,9 @@ add_action( 'admin_menu', 'cg_button_create_menu' );
 
 function cg_button_create_menu() {
 	//create new top-level menu
-	add_menu_page( 'CG Button Plugin Settings', 'CG Button Settings', 'administrator', 'CG_button_plugin/CG-Button-init.php', 'cg_button_settings_page', plugins_url( '/images/cg17.png', 'CG_button_plugin/CG-Button-init.php' ) );
+	add_menu_page( 'CG Button Plugin Settings', 'CG Button Settings', 'administrator', PLUGIN_DIRECTORY . '/CG-Button-init.php', 'cg_button_settings_page', plugins_url( '/images/cg17.png', PLUGIN_DIRECTORY . '/CG-Button-init.php' ) );
 
-	add_submenu_page( 'CG_button_plugin/CG-Button-init.php', 'CG Button Plugin Settings', 'CG Button Settings', 'administrator', 'CG_button_plugin/CG-Button-init.php', 'cg_button_settings_page' );
+	add_submenu_page( PLUGIN_DIRECTORY . '/CG-Button-init.php', 'CG Button Plugin Settings', 'CG Button Settings', 'administrator', PLUGIN_DIRECTORY . '/CG-Button-init.php', 'cg_button_settings_page' );
 	//call register settings function
 	add_action( 'admin_init', 'register_mysettings' );
 }
@@ -112,7 +113,7 @@ add_action( 'admin_enqueue_scripts', 'cg_button_scripts' );
 function cg_button_scripts() {
 	wp_register_script(
 		'quick-registration-script',
-		plugins_url( '/CG_button_plugin/utils/QuickRegistration.js' ),
+		plugins_url( '/' . PLUGIN_DIRECTORY . '/utils/QuickRegistration.js' ),
 		false,
 		false,
 		false
@@ -128,7 +129,7 @@ add_action( 'admin_enqueue_scripts', 'cg_button_styles' );
 function cg_button_styles() {
 	wp_enqueue_style(
 		'quick-registration-style',
-		plugins_url( '/CG_button_plugin/utils/QuickRegistration.css' )
+		plugins_url( '/' . PLUGIN_DIRECTORY . '/utils/QuickRegistration.css' )
 	);
 	wp_enqueue_style(
 		'cg-button-jquery-style',
