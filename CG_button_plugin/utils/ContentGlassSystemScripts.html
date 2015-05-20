@@ -1,0 +1,31 @@
+<!--<script src="[CG_SERVER]/s1/application/load/cg_button?app_id=[APP_ID]&VERSION=[CG_VERSION]&XDEBUG_SESSION_START=[XDEBUG]"></script>-->
+<script>
+    window.cg = {
+        CG_JQ_UI_THEME: [DEFAULT_THEME]
+    }
+</script>
+
+<script>
+    window.cgAsyncReady = function () {
+        var appData = [APP_DATA];
+        CGAPI.loadApp(appData, function onAppLoad(application) {
+            application.init();
+        });
+    };
+
+    (function (port) {
+        var fjs = document.getElementsByTagName('script')[0];
+        if (document.getElementById("cg-api")) {
+            return;
+        }
+        var js = document.createElement("script");
+        js.id = "cg-api";
+        js.type = 'text/javascript';
+        js.async = true;
+        ////local.contentglass.com
+        js.src = "[CG_SERVER]" + (port != null ? ":" + port : "")
+                + "/server_api/s1/application/load/cg_api?app_id=[APP_ID]&VERSION=[CG_VERSION][DEV_MODE][XDEBUG]";
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(js, s);
+    }());
+</script>

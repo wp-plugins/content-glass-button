@@ -1,0 +1,58 @@
+.cg-wordpress-quick-registration-help{
+    width: 20px;
+    height: 20px;
+    font-weight: bold;
+    border: 1px solid rgb(202, 182, 99);
+    background-color: #BBD6EE;
+    border-radius: 20px;
+    text-align:  center;
+    font-size: smaller;
+    cursor: pointer;
+}
+#cg-wordpress-plugin-quick-reg-app-data-table{
+    width: 100%;
+}
+
+#cg-wordpress-plugin-quick-reg-app-data-table input{
+    width: 100%;
+    border: 1;
+    border-style: solid;
+}
+
+#cg-wordpress-plugin-quick-reg-app-data-table tr td:first-child{
+    width: 30%;
+}
+
+.cg-wordpress-plugin-quick-reg-user-type-label{
+    padding-right: 15px;
+}
+
+.cg-wordpress-plugin-quick-reg-text-input-label{
+    width: 5em;
+}
+
+.cg-wordpress-plugin-quick-reg-error-label-div{
+    text-align: center;
+}
+
+.cg-wordpress-plugin-quick-reg-error-label-div label{
+    font-weight: bold;
+    color: red;
+}
+
+.cg .ui-dialog-buttonpane{
+    margin-top: 0px !important;
+}
+
+#cg-wordpress-plugin-notification-message{
+    color: #008000;
+}
+
+.cg-wordpress-plugin-user-type-div label, .cg-wordpress-plugin-user-type-div input{
+    display: inline-block;
+}
+
+.cg-wordpress-plugin-input-error{
+    border-width: 3px !important;
+    border-color: red !important;
+}
