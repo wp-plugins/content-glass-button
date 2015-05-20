@@ -47,10 +47,25 @@ apps on your website or sharing-tools we provide for various
 environments and cases.
 
 == Installation ==
+Method 1:
 
-1. Upload CG_button_plugin directory to the `/wp-content/plugins/` directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Go into the CG Button Settings and enter your APP Id. If you don't have
+1. In your site click on Plugins.
+2. Click "Add New"
+3. In the search box write "CG Button" and press enter.
+4. Click on the Install button in the CG Button plugin box.
+5. Click "Ok" in th popup.
+6. Click "Active plugin" link.
+7. Go into the CG Button Settings and enter your APP Id. If you don't have
+   one then you can register at the [registration](http://developers.contentglass.com/user/register) page.
+
+
+Method 2:
+
+1. Down the plugin zip from the wordpress plugin repository.
+2. Extract the zip content into `/wp-content/plugins/content-glass-button`
+   directory (you may be needed to create this directory).
+3. Activate the plugin through the 'Plugins' menu in WordPress
+4. Go into the CG Button Settings and enter your APP Id. If you don't have
    one then you can register at the [registration](http://developers.contentglass.com/user/register) page.
 
 == Frequently Asked Questions ==
