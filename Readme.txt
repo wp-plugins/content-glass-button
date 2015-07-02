@@ -55,8 +55,6 @@ Method 1:
 4. Click on the Install button in the CG Button plugin box.
 5. Click "Ok" in th popup.
 6. Click "Active plugin" link.
-7. Go into the CG Button Settings and enter your APP Id. If you don't have
-   one then you can register at the [registration](http://developers.contentglass.com/user/register) page.
 
 
 Method 2:
@@ -65,13 +63,22 @@ Method 2:
 2. Extract the zip content into `/wp-content/plugins/content-glass-button`
    directory (you may be needed to create this directory).
 3. Activate the plugin through the 'Plugins' menu in WordPress
-4. Go into the CG Button Settings and enter your APP Id. If you don't have
-   one then you can register at the [registration](http://developers.contentglass.com/user/register) page.
 
+After Installation is completed:
+Go into the CG Button Settings and enter your APP Id.
+* Note: for trial you can use the shared APP ID: "5513c675ag580"
+If you don't have one then you can register at the [registration](http://developers.contentglass.com/user/register) page.
+After you register go into:[Application creation page](http://developers.contentglass.com/admin/structure/entity-type/application/application/add?destination=my_applications)
+and create a new application.
+
+For more information you can enter [developers site](http://developers.contentglass.com/).
+For any questions you can send us email at: system@contentglass.com
 == Frequently Asked Questions ==
 
 = How do i get an APP_ID? =
 You enter the [registration](http://developers.contentglass.com/user/register) page and register.
+After you register go into [Application creation page[(http://developers.contentglass.com/admin/structure/entity-type/application/application/add?destination=my_applications)
+and create a new application.
 
 == Screenshots ==
 1. Content Glass button wordpress widgets.

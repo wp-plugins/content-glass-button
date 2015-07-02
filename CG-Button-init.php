@@ -146,14 +146,16 @@ function cg_button_settings_page() {
 			<?php do_settings_sections( 'cg-button-settings-group' ); ?>
 			<div id="cg-wordpress-plugin-notification-message" hidden="hidden"></div>
 			<p>
-				For trial period you can use the trial app id: <b><?php echo esc_attr( CG_BUTTON_DEFAULT_APP_ID )?></b> and register later
-				<a href="http://www.contentglass.com/user/login" target="_blank">here</a> for creating your own app Id. <br>Note
-				that test App ID is for testing purpose only. Content associated with the test App ID may not preserved.
+				* Note: for trial you can use the shared APP ID: "<b><?php echo esc_attr( CG_BUTTON_DEFAULT_APP_ID )?></b>".
+				<!-- For trial period you can use the trial app id: <b><?php echo esc_attr( CG_BUTTON_DEFAULT_APP_ID )?></b> and register later at
+				<a href="http://developers.contentglass.com/user/register" target="_blank">developers.contentglass.com</a> and creating your own app Id. <br>Note
+				that test App ID is for testing purpose only. Content associated with the test App ID may not preserved. -->
 			</p>
 			<table class="form-table">
 				<tr valign="top">
-					<th scope="row">APP Id <a href="#" onclick="wordPressCgPlugin.openQuickRegistration()"
-											  style="font-size: 12px;">(click here to get APP ID)</a></th>
+					<th scope="row">APP Id <!--<a href="#" onclick="wordPressCgPlugin.openQuickRegistration()"
+											  style="font-size: 12px;">(click here to get APP ID)</a>-->
+					</th>
 					<td>
 						<?php
 						$inputElm = create_input_element( 'text', CG_BUTTON_APP_ID );
