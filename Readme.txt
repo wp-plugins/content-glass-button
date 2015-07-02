@@ -47,8 +47,7 @@ apps on your website or sharing-tools we provide for various
 environments and cases.
 
 == Installation ==
-Method 1:
-
+Method 1:<br>
 1. In your site click on Plugins.
 2. Click "Add New"
 3. In the search box write "CG Button" and press enter.
@@ -57,8 +56,7 @@ Method 1:
 6. Click "Active plugin" link.
 
 
-Method 2:
-
+Method 2:<br>
 1. Download the plugin zip from the wordpress plugin repository.
 2. Extract the zip content into `/wp-content/plugins/content-glass-button`
    directory (you may be needed to create this directory).
