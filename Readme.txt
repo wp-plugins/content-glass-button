@@ -94,3 +94,5 @@ and create a new application.
 == Upgrade Notice ==
 = 1.0.0 =
 Add ability to add the button to the site.
+
+
