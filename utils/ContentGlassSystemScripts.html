@@ -14,6 +14,13 @@
     };
 
     (function (port) {
+        var sessId = sessionStorage.getItem("cg_sess_id");
+        if (typeof sessId === "undefined" || sessId === null || sessId === "undefined") {
+            sessId = "";
+        } else {
+            sessId = "&RHZ_SESSION_ID=" + sessId;
+        }
+
         var fjs = document.getElementsByTagName('script')[0];
         if (document.getElementById("cg-api")) {
             return;
@@ -24,7 +31,7 @@
         js.async = true;
         ////local.contentglass.com
         js.src = "[CG_SERVER]" + (port != null ? ":" + port : "")
-                + "/server_api/s1/application/load/cg_api?app_id=[APP_ID]&VERSION=[CG_VERSION][DEV_MODE][XDEBUG]";
+                + "/server_api/s1/application/load/cg_api?app_id=[APP_ID]&api_key=[API_KEY]&VERSION=[CG_VERSION][DEV_MODE][XDEBUG]" + sessId;
         var s = document.getElementsByTagName('script')[0];
         s.parentNode.insertBefore(js, s);
     }());

@@ -51,11 +51,11 @@ class CGModuleUtils {
 		}
 		$content = self::replace_all( $content, '[APP_ID]', $appId, 8 );
 
-		$apiKey = get_option( CG_BUTTON_API_KEY );
-		if ( null === $apiKey ) {
-			$apiKey = '';
-		}
-		$content = self::replace_all( $content, '[API_KEY]', $apiKey, 9 );
+//		$apiKey = get_option( CG_BUTTON_API_KEY );
+//		if ( null === $apiKey ) {
+//			$apiKey = '';
+//		}
+//		$content = self::replace_all( $content, '[API_KEY]', $apiKey, 9 );
 
 		$apps_data = json_decode( self::get_application_types() );
 		if ( $apps_data->status === 1 ) {
