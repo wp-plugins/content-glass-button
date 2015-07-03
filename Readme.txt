@@ -5,7 +5,7 @@ Tags: Social Sharing
 Version: 1.0.0
 Requires at least: 3.1
 Tested up to: 4.2.2
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -90,7 +90,10 @@ and create a new application.
 = 1.0.0 =
 * Widget button addition.
 * Floating button addition.
+* Fix fatal error caused by file name: CG-Button-init.php
 
 == Upgrade Notice ==
 = 1.0.0 =
 Add ability to add the button to the site.
+= 1.0.1 =
+Fix fatal error caused by file name: CG-Button-init.php
