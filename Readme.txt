@@ -9,7 +9,7 @@ Stable tag: 1.0.0
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Enables the wordpress site admin to add to his site the Content Glass button.
+Content Glass is a social-tool that allow website users to share widgets with peers-group is association with page address, domain or TLD.
 
 == Description ==
 Content Glass is a pending patent State Oriented Sharing platform that provide:
