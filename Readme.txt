@@ -32,7 +32,7 @@ following advantages:
 4. Having the ability o f dynamic state-oriented customization
    of website presence.
 
-<a href="http://www.content-glass.org">Sample Website</a>
+<a href="http://www.content-glass.org" target="_sample">Sample Website</a>
 
 State Oriented Sharing is a sharing paradigm in which content in the form of
 widgets is shared in relation with defined state of objects and things - that
