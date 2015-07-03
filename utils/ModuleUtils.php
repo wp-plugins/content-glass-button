@@ -20,6 +20,7 @@ define( 'CG_BUTTON_DEFAULT_APPLICATION_DATA', '{"button": {"name": "button", "ty
 define( 'CG_BUTTON_DEFAULT_APPLICATION', 'button' );
 
 define( 'CG_BUTTON_APP_ID', 'cg_button_app_id' );
+define( 'CG_BUTTON_API_KEY', 'cg_button_api_key' );
 define( 'CG_BUTTON_THEME', 'cg_button_default_theme' );
 define( 'CG_BUTTON_VERSION', 'cg_button_version' );
 define( 'CG_BUTTON_LABEL', 'cg_button_label' );
@@ -34,7 +35,7 @@ define( 'CG_BUTTON_APPLICATION', 'cg_button_application' );
 //TODO for propduction chnage to false
 //define( 'CG_DEV_MODE', true );
 define( 'CG_DEV_MODE', false );
-define( 'XDEBUG', 15996 );
+define( 'XDEBUG', 15229 );
 define( 'XDEBUG_TOKEN', '&XDEBUG_SESSION_START=' );
 
 //TODO for production change to api url
@@ -50,6 +51,12 @@ class CGModuleUtils {
 		}
 		$content = self::replace_all( $content, '[APP_ID]', $appId, 8 );
 
+		$apiKey = get_option( CG_BUTTON_API_KEY );
+		if ( null === $apiKey ) {
+			$apiKey = '';
+		}
+		$content = self::replace_all( $content, '[API_KEY]', $apiKey, 9 );
+
 		$apps_data = json_decode( self::get_application_types() );
 		if ( $apps_data->status === 1 ) {
 			$apps_data = $apps_data->data->applications;
@@ -60,7 +67,13 @@ class CGModuleUtils {
 		if ( null === $app_type ) {
 			$app_type = CG_BUTTON_DEFAULT_APPLICATION;
 		}
-		$content = self::replace_all( $content, '[APP_DATA]', json_encode( $apps_data->{$app_type} ), 10 );
+		if ( isset( $apps_data->{$app_type} ) ) {
+			$type = $apps_data->{$app_type};
+		} else {
+			$type = $apps_data->{CG_BUTTON_DEFAULT_APPLICATION};
+		}
+
+		$content = self::replace_all( $content, '[APP_DATA]', json_encode( $type ), 10 );
 
 		$theme = get_option( CG_BUTTON_THEME );
 		if ( null === $theme ) {
