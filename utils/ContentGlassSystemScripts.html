@@ -14,13 +14,13 @@
     };
 
     (function (port) {
-        var sessId = sessionStorage.getItem("cg_sess_id");
-        if (typeof sessId === "undefined" || sessId === null || sessId === "undefined") {
-            sessId = "";
-        } else {
-            sessId = "&RHZ_SESSION_ID=" + sessId;
-        }
-
+//        var sessId = sessionStorage.getItem("cg_sess_id");
+//        if (typeof sessId === "undefined" || sessId === null || sessId === "undefined") {
+//            sessId = "";
+//        } else {
+//            sessId = "&RHZ_SESSION_ID=" + sessId;
+//        }
+        var sessId = "";
         var fjs = document.getElementsByTagName('script')[0];
         if (document.getElementById("cg-api")) {
             return;
