@@ -141,7 +141,7 @@ function cg_button_settings_page() {
 	?>
 	<div id="cg-plugin-settings-page" class="wrap">
 		<h2><a>CG Button settings</a></h2>
-		<form method="post" action="Options.php">
+		<form method="post"">
 			<?php settings_fields( 'cg-button-settings-group' ); ?>
 			<?php do_settings_sections( 'cg-button-settings-group' ); ?>
 			<div id="cg-wordpress-plugin-notification-message" hidden="hidden"></div>
