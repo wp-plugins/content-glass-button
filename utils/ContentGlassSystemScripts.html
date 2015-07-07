@@ -24,7 +24,7 @@
         js.async = true;
         ////local.contentglass.com
         js.src = "[CG_SERVER]" + (port != null ? ":" + port : "")
-                + "/server_api/s1/application/load/cg_api?app_id=[APP_ID]&VERSION=[CG_VERSION][DEV_MODE][XDEBUG]";
+                + "/server_api/s1/application/load/cg_api?app_id=[APP_ID]&access_token=[ACCESS_TOKEN]&RHZ_SESSION_ID=[SESSION_ID]&VERSION=[CG_VERSION][DEV_MODE][XDEBUG]";
         var s = document.getElementsByTagName('script')[0];
         s.parentNode.insertBefore(js, s);
     }());

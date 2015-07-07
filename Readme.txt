@@ -2,10 +2,10 @@
 Contributors: Rhizome Networks
 Donate link: http://www.contentglass.com
 Tags: Social Sharing
-Version: 1.0.1
+Version: 1.0.2
 Requires at least: 3.1
 Tested up to: 4.2.2
-Stable tag: 1.0.0
+Stable tag: 1.0.2
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -75,7 +75,7 @@ For any questions you can send us email at: system@contentglass.com.
 
 = How do i get an APP_ID? =<br>
 You enter the [registration](http://developers.contentglass.com/user/register) page and register.<br>
-After you register go into [Application creation page[(http://developers.contentglass.com/admin/structure/entity-type/application/application/add?destination=my_applications)
+After you register go into [Application creation page](http://developers.contentglass.com/admin/structure/entity-type/application/application/add?destination=my_applications)
 and create a new application.
 
 == Screenshots ==
