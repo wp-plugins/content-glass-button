@@ -11,7 +11,8 @@
 define( 'CG_BUTTON_DEFAULT_THEME', 'redmond' );
 define( 'CG_BUTTON_DEFAULT_LABEL', 'Content Glass' );
 define( 'CG_BUTTON_DEFAULT_VERSION', 'latest' );
-define( 'CG_BUTTON_DEFAULT_APP_ID', '5513c675ag580' );
+define( 'CG_BUTTON_TEST_APP_ID', '559a1b7f3de3a' );
+define( 'CG_BUTTON_TEST_API_KEY', '559a1a7d380b3-dev' );
 define( 'CG_BUTTON_DEFAULT_FONT_SIZE', 14 );
 define( 'CG_BUTTON_DEFAULT_LEFT', 0 );
 define( 'CG_BUTTON_DEFAULT_TOP', 0 );
@@ -31,19 +32,26 @@ define( 'CG_BUTTON_FONT_SIZE', 'cg_button_font_size' );
 define( 'CG_BUTTON_ENABLE', 'cg_button_enable' );
 define( 'CG_BUTTON_APPLICATION_DATA', 'cg_button_application_data' );
 define( 'CG_BUTTON_APPLICATION', 'cg_button_application' );
+define( 'CG_BUTTON_SESSION_ID', 'cg_button_session_id' );
 
-//TODO for propduction chnage to false
-//define( 'CG_DEV_MODE', true );
-define( 'CG_DEV_MODE', false );
-define( 'XDEBUG', 15229 );
+//TODO for propduction chnage to prod
+define( 'CG_DEV_MODE', 'prod' );
+//define( 'CG_DEV_MODE', 'dev' );
+//define( 'CG_DEV_MODE', 'local' );
+define( 'XDEBUG', 19544 );
 define( 'XDEBUG_TOKEN', '&XDEBUG_SESSION_START=' );
 
 //TODO for production change to api url
 define( 'CG_BUTTON_SERVER_URL', 'http://api.contentglass.com' );
+//define( 'CG_BUTTON_SERVER_URL', 'http://dev.contentglass.com' );
 //define( 'CG_BUTTON_SERVER_URL', 'http://local.contentglass.com' );
 
+define( 'CG_AUTH_URL', CG_BUTTON_SERVER_URL . '/server_api/p1/security/authorize' );
+
+
+
 class CGModuleUtils {
-	public static function get_system_scripts() {
+	public static function get_system_scripts($accessToken) {
 		$content = file_get_contents( 'ContentGlassSystemScripts.html', FILE_USE_INCLUDE_PATH );
 		$appId = get_option( CG_BUTTON_APP_ID );
 		if ( null === $appId ) {
@@ -51,11 +59,9 @@ class CGModuleUtils {
 		}
 		$content = self::replace_all( $content, '[APP_ID]', $appId, 8 );
 
-//		$apiKey = get_option( CG_BUTTON_API_KEY );
-//		if ( null === $apiKey ) {
-//			$apiKey = '';
-//		}
-//		$content = self::replace_all( $content, '[API_KEY]', $apiKey, 9 );
+		$content = self::replace_all( $content, '[ACCESS_TOKEN]', $accessToken, 14 );
+
+		$content = self::replace_all( $content, '[SESSION_ID]', get_option( CG_BUTTON_SESSION_ID ), 12 );
 
 		$apps_data = json_decode( self::get_application_types() );
 		if ( $apps_data->status === 1 ) {
@@ -91,9 +97,12 @@ class CGModuleUtils {
 
 		$content = self::replace_all( $content, '[CG_SERVER]', CG_BUTTON_SERVER_URL, 11 );
 
-		if ( CG_DEV_MODE ) {
+		if ( CG_DEV_MODE === 'local' ) {
 			$content = self::replace_all( $content, '[DEV_MODE]', '&DEV=true', 10 );
 			$content = self::replace_all( $content, '[XDEBUG]', XDEBUG_TOKEN . XDEBUG, 8 );
+		} else if ( CG_DEV_MODE === 'dev' ) {
+			$content = self::replace_all( $content, '[DEV_MODE]', '&DEV_HOST=true', 10 );
+			$content = self::replace_all( $content, '[XDEBUG]', '', 8 );
 		} else {
 			$content = self::replace_all( $content, '[DEV_MODE]', '', 10 );
 			$content = self::replace_all( $content, '[XDEBUG]', '', 8 );
@@ -153,6 +162,8 @@ class CGModuleUtils {
 		return $string;
 	}
 
+	//TODO merage this two function into one that by one call return all the meta-data needed
+
 	public static function get_versions() {
 		$url = CG_BUTTON_SERVER_URL . '/server_api/s1/application/get-versions?XDEBUG_SESSION_START=' . XDEBUG;
 
@@ -165,15 +176,17 @@ class CGModuleUtils {
 		return self::send_get_request( $url );
 	}
 
-	private static function send_get_request( $url ) {
+	public static function send_get_request( $url ) {
 		$curl = curl_init();
-
-		curl_setopt( $curl, CURLOPT_URL, $url );
-		curl_setopt( $curl, CURLOPT_RETURNTRANSFER, 1 );
-
+		$options = array(
+			CURLOPT_RETURNTRANSFER => 1,
+			CURLOPT_URL => $url,
+			CURLOPT_CONNECTTIMEOUT => 5,
+			CURLOPT_TIMEOUT => 30,
+		);
+		curl_setopt_array($curl, $options);
 		$result = curl_exec( $curl );
 		curl_close( $curl );
-
 		return $result;
 	}
 }
