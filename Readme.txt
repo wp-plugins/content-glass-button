@@ -96,8 +96,15 @@ and create a new application.
 * Floating button addition.
 * Fix fatal error caused by file name: CG-Button-init.php
 
+= 1.0.2 =
+* Add API key security measure.
+* Fix "Infinite" loading in media pages.
+
 == Upgrade Notice ==
 = 1.0.0 =
 Add ability to add the button to the site.
 = 1.0.1 =
 Fix fatal error caused by file name: CG-Button-init.php
+= 1.0.2 =
+Add API key security measure.
+Fix "Infinite" loading in media pages.
