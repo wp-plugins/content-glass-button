@@ -73,9 +73,13 @@ For more information you can enter [developers site](http://developers.contentgl
 For any questions you can send us email at: system@contentglass.com.
 == Frequently Asked Questions ==
 
-= How do i get an APP_ID? =<br>
+= How do i get an API_Key? =<br>
 You enter the [registration](http://developers.contentglass.com/user/register) page and register.<br>
-After you register go into [Application creation page](http://developers.contentglass.com/admin/structure/entity-type/application/application/add?destination=my_applications)
+After registration go to [Developer page](http://developers.contentglass.com/my-developer-account-view) to see your
+API Keys.
+
+= How do i get an APP_ID? =<br>
+You go to [Application creation page](http://developers.contentglass.com/admin/structure/entity-type/application/application/add?destination=my_applications)
 and create a new application.
 
 == Screenshots ==
