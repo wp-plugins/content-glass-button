@@ -14,8 +14,9 @@ Content Glass is a social-tool that allow website users to share widgets with pe
 == Description ==
 The plugin add to your site Content Glass button in a floating form ( can be dragged across the screen to any position),
  widget form (can be set in various areas in your site via the appearances/widgets menu and by special tags that can be
- planted in posts or pages. A special tag like this looked like:<br>
- "<div cg='{"type":"button", "label":"Content Glass", "draggable":true}'></div>"
+ planted in posts or pages. A special tag like this looked like:
+ <br>
+ "&lt;div cg='{"type":"button", "label":"Content Glass", "draggable":true}'&gt;&lt;/div&gt;"
  <br>
 
 Content Glass is a pending patent State Oriented Sharing platform that provide:
