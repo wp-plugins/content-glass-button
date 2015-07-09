@@ -16,7 +16,7 @@ The plugin add to your site Content Glass button in a floating form ( can be dra
  widget form (can be set in various areas in your site via the appearances/widgets menu and by special tags that can be
  planted in posts or pages. A special tag like this looked like:
  <br>
- &ltdiv cg='{"type":"button", "label":"Content Glass", "draggable":true}'&gt&lt/div&gt
+ &lt;div cg='{"type":"button", "label":"Content Glass", "draggable":true}'&gt;&lt;/div&gt;
  <br>
 
 Content Glass is a pending patent State Oriented Sharing platform that provide:
