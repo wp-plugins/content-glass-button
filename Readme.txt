@@ -2,16 +2,22 @@
 Contributors: Rhizome Networks
 Donate link: http://www.contentglass.com
 Tags: Social Sharing
-Version: 1.0.2
+Version: 1.0.3
 Requires at least: 3.1
 Tested up to: 4.2.2
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Content Glass is a social-tool that allow website users to share widgets with peers-group in association with page address, domain or TLD.
 
 == Description ==
+The plugin add to your site Content Glass button in a floating form ( can be dragged across the screen to any position),
+ widget form (can be set in various areas in your site via the appearances/widgets menu and by special tags that can be
+ planted in posts or pages. A special tag like this looked like:<br>
+ "<div cg='{"type":"button", "label":"Content Glass", "draggable":true}'></div>"
+ <br>
+
 Content Glass is a pending patent State Oriented Sharing platform that provide:
 
 1. Sharing tools.
@@ -84,6 +90,10 @@ API Keys.
 You go to [Application creation page](http://developers.contentglass.com/admin/structure/entity-type/application/application/add?destination=my_applications)
 and create a new application.
 
+= How do i enable Button widget? =<br>
+The button widget is enable already.   What you just need to do is to place the widget in one
+of the areas in your site.  To do so go to Appearances/Widgets and drag CG Button box to the desired area.
+
 == Screenshots ==
 1. Content Glass button wordpress widgets.
 2. Content Glass button floating button(can be any where on the screen).
@@ -102,6 +112,11 @@ and create a new application.
 * Add API key security measure.
 * Fix "Infinite" loading in media pages.
 
+= 1.0.3 =
+* Add setting link in the plugins page under the plugin row.
+* Move the plugins settings to be under the settings sub-menu.
+* Fix problem when plugin activate an error of #### unexpected char.
+
 == Upgrade Notice ==
 = 1.0.0 =
 Add ability to add the button to the site.
@@ -110,3 +125,7 @@ Fix fatal error caused by file name: CG-Button-init.php
 = 1.0.2 =
 Add API key security measure.
 Fix "Infinite" loading in media pages.
+= 1.0.3 =
+Add setting link in the plugins page under the plugin row.
+Move the plugins settings to be under the settings sub-menu.
+Fix problem when plugin activate an error of #### unexpected char.

@@ -1,0 +1,74 @@
+
+        <?php settings_fields( 'cg-button-settings-group' ); ?>
+        <?php do_settings_sections( 'cg-button-settings-group' ); ?>
+        <div id="cg-wordpress-plugin-notification-message" hidden="hidden"></div>
+        <p>
+            * Note: for trial you can use the shared APP ID: "<b>[TEST_APP_ID]</b>".
+            <br>
+            * Note: for trial you can use the shared API Key: "<b>[TEST_API_KEY]</b>".
+        </p>
+        <table class="form-table">
+            <tr valign="top">
+                <th scope="row">APP Id <!--<a href="#" onclick="wordPressCgPlugin.openQuickRegistration()"
+											  style="font-size: 12px;">(click here to get APP ID)</a>-->
+                </th>
+                <td>
+                    [API_ID_INPUT]
+                    <label style="color: red; font-weight: bold;" title="Required field">*</label>
+                </td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">API Key</th>
+                <td>
+                    [API_KEY_INPUT]
+                    <label style="color: red; font-weight: bold;" title="Required field">*</label>
+                </td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">Version</th>
+                <td>
+                    [VERSIONS_INPUT]
+                </td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">Application type</th>
+                <td>
+                    [APP_TYPES_INPUT]
+                </td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">Enable Floating CG Button
+                    <br><small style="font-size: x-small;">
+                        Floating button is presented on some position of your website.
+                        You can also set the button as a WP Widget.
+                    </small>
+                </th>
+                <td>
+                    [BUTTON_ENABLE_INPUT]
+                </td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">Floating Button label</th>
+                <td>
+                    [BUTTON_LABEL_INPUT]
+                </td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">Floating CG Button style
+                    <br>
+                    <small style="font-size: x-small;">
+                        Example: font-size: 14px; position: fixed; top: 0px; left: 100px;
+                    </small>
+                </th>
+                <td>
+                    [BUTTON_STYLE_INPUT]
+                </td>
+            </tr>
+
+            <tr valign="top">
+                <th scope="row">Default CG Button theme</th>
+                <td>
+                    [BUTTON_THEMES_INPUT]
+                </td>
+            </tr>
+        </table>

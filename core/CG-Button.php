@@ -8,6 +8,8 @@
  * Date: 18/11/14
  * Time: 12:19
  */
+require_once( '/../utils/ModuleUtils.php' );
+
 class CgButton {
 	public function __construct() {
 		add_action( 'wp_loaded', array( $this, 'cg_button_addition' ) );
