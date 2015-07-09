@@ -7,7 +7,7 @@
  * Date: 07/07/2015
  * Time: 08:39
  */
-require_once( '/../utils/ModuleUtils.php' );
+require_once( __DIR__ . '/../utils/ModuleUtils.php' );
 require_once( 'HtmlElement.php' );
 require_once( 'CG-Button-widget.php' );
 define( 'PLUGIN_DIRECTORY', 'content-glass-button' );
@@ -50,7 +50,7 @@ function cg_button_authorize() {
 				wp_enqueue_script( 'cg-system-script' );
 			}
 
-//			echo ent2ncr( CGModuleUtils::get_system_scripts( $accessToken ) );
+			//			echo ent2ncr( CGModuleUtils::get_system_scripts( $accessToken ) );
 		}
 	} else {
 		global $cg_error;
@@ -87,7 +87,7 @@ add_action( 'admin_menu', 'cg_button_create_menu' );
 
 function cg_button_create_menu() {
 	//create new top-level menu
-	add_options_page( 'CG Button Plugin Settings', 'CG Button Settings', 'administrator', PLUGIN_DIRECTORY . '/core/CG-Button-init.php', 'cg_button_settings_page', plugins_url( '/images/cg17.png', PLUGIN_DIRECTORY . '/core/CG-Button-init.php' ) );
+	add_options_page( 'CG Button Plugin Settings', 'CG Button', 'administrator', PLUGIN_DIRECTORY . '/core/CG-Button-init.php', 'cg_button_settings_page', plugins_url( '/images/cg17.png', PLUGIN_DIRECTORY . '/core/CG-Button-init.php' ) );
 	//	add_menu_page( 'CG Button Plugin Settings', 'CG Button Settings', 'administrator', PLUGIN_DIRECTORY . '/CG-Button-init.php', 'cg_button_settings_page', plugins_url( '/images/cg17.png', PLUGIN_DIRECTORY . '/CG-Button-init.php' ) );
 
 	//	add_submenu_page( PLUGIN_DIRECTORY . '/CG-Button-init.php', 'CG Button Plugin Settings', 'CG Button Settings', 'administrator', PLUGIN_DIRECTORY . '/CG-Button-init.php', 'cg_button_settings_page' );
@@ -183,7 +183,7 @@ function cg_button_settings_page() {
 	settings_fields( 'cg-button-settings-group' );
 	do_settings_sections( 'cg-button-settings-group' );
 
-	$content = file_get_contents( '/../templates/SettingsFormTemplate.html', FILE_USE_INCLUDE_PATH );
+	$content = file_get_contents( __DIR__ . '/../templates/SettingsFormTemplate.html', FILE_USE_INCLUDE_PATH );
 	$content = StringUtils::replace_all( $content, '[TEST_APP_ID]', CG_BUTTON_TEST_APP_ID );
 	$content = StringUtils::replace_all( $content, '[TEST_API_KEY]', CG_BUTTON_TEST_API_KEY );
 
@@ -246,3 +246,18 @@ function cg_button_settings_page() {
 	submit_button();
 	echo '</form></div>';
 }
+
+function cg_button_add_rate_link() {
+	global $pagenow;
+	if ( 'plugins.php' === $pagenow ) {
+		wp_register_script(
+			'cg-rate-script',
+			plugins_url( '/' . PLUGIN_DIRECTORY . '/utils/AddRateLink.js?' ),
+			false,
+			false,
+			true
+		);
+		wp_enqueue_script( 'cg-rate-script' );
+	}
+}
+add_action( 'admin_enqueue_scripts', 'cg_button_add_rate_link' );

@@ -53,12 +53,12 @@ if ( CG_DEV_MODE === 'local' ) {
 	define( 'CG_BUTTON_SERVER_URL', '//api.contentglass.com' );
 }
 define( 'CG_AUTH_URL', 'http:' . CG_BUTTON_SERVER_URL . '/server_api/p1/security/authorize' );
-
+define( 'ABS_PLUGIN_PATH', ABSPATH . 'wp-content/plugins/content-glass-button' );
 
 
 class CGModuleUtils {
 	public static function get_system_scripts($accessToken) {
-		$content = file_get_contents( '/../templates/ContentGlassSystemScripts.html', FILE_USE_INCLUDE_PATH );
+		$content = file_get_contents( __DIR__ . '/../templates/ContentGlassSystemScripts.html' );
 		$appId = get_option( CG_BUTTON_APP_ID );
 		if ( null === $appId ) {
 			$appId = '';
@@ -183,7 +183,7 @@ class CGModuleUtils {
 	}
 
 	public static function get_customize_button_dev_script() {
-		$content = file_get_contents( '/../templates/CustomizeButtonScript.html', FILE_USE_INCLUDE_PATH );
+		$content = file_get_contents( __DIR__ . '/../templates/CustomizeButtonScript.html', FILE_USE_INCLUDE_PATH );
 
 		if ( false !== $content ) {
 			$label = get_option( CG_BUTTON_LABEL );
@@ -207,7 +207,7 @@ class CGModuleUtils {
 	}
 
 	public static function get_widget_script( $label, $style) {
-		$content = file_get_contents( '/../templates/WidgetButtonScript.html', FILE_USE_INCLUDE_PATH );
+		$content = file_get_contents( __DIR__ . '/../templates/WidgetButtonScript.html', FILE_USE_INCLUDE_PATH );
 		$content = StringUtils::replace_all( $content, '[CG_LABEL]', $label, 10 );
 
 		$style = StringUtils::replace_all( $style, "\n", '', 1 );

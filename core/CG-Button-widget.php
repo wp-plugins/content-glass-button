@@ -8,8 +8,8 @@
  * Time: 12:10
  */
 
-require_once( '/../utils/StringUtils.php' );
-require_once( '/../utils/ModuleUtils.php' );
+require_once(  __DIR__ . '/../utils/StringUtils.php' );
+require_once(  __DIR__ . '/../utils/ModuleUtils.php' );
 
 define( 'CG_BUTTON_WIDGET_ENABLE', 'cg_button_widget_enable' );
 
@@ -74,13 +74,13 @@ class CgButtonWidget extends WP_Widget {
 		$title = $this->get_param( $instance, CG_WIDGET_TITLE, CG_WIDGET_DEFAULT_TEXT );
 		$style = $this->get_param( $instance, CG_WIDGET_STYLE, CG_WIDGET_DEFAULT_STYLE );
 		// Widget admin form
-		$content = file_get_contents( '/../templates/WidgetInputTemplate.html', FILE_USE_INCLUDE_PATH );
+		$content = file_get_contents(  __DIR__ . '/../templates/WidgetInputTemplate.html', FILE_USE_INCLUDE_PATH );
 		$content = StringUtils::replace_all( $content, '[ID]', $this->get_field_id( CG_WIDGET_TITLE ), 4 );
 		$content = StringUtils::replace_all( $content, '[NAME]', $this->get_field_id( CG_WIDGET_TITLE ), 6 );
 		$content = StringUtils::replace_all( $content, '[VALUE]', $title, 7 );
 		$content = StringUtils::replace_all( $content, '[EXPLANATION]', '', 13 );
 
-		$content = $content . file_get_contents( '/../templates/WidgetTextareaTemplate.html', FILE_USE_INCLUDE_PATH );
+		$content = $content . file_get_contents(  __DIR__ . '/../templates/WidgetTextareaTemplate.html', FILE_USE_INCLUDE_PATH );
 		$content = StringUtils::replace_all( $content, '[ID]', $this->get_field_id( CG_WIDGET_STYLE ), 4 );
 		$content = StringUtils::replace_all( $content, '[NAME]', $this->get_field_id( CG_WIDGET_STYLE ), 6 );
 		$content = StringUtils::replace_all( $content, '[VALUE]', $style, 7 );
