@@ -97,6 +97,12 @@ class HtmlElement {
 		//We don't use esc_html because the purpose of this function is to return an html tag
 		echo ( $this->build() );
 	}
+
+	/* spit it out */
+	function to_string() {
+		//We don't use esc_html because the purpose of this function is to return an html tag
+		return $this->build();
+	}
 }
 
 ?>

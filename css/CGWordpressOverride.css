@@ -1,0 +1,22 @@
+/*
+=========================================
+Wordpress plugin overrides
+=========================================
+*/
+
+.cg th,
+.cg tr,
+.cg select,
+.cg thead,
+.cg tbody,
+.cg ul,
+.cg ol,
+.cg td,
+.cg table
+{
+    border: initial;
+}
+
+.cg table{
+    table-layout: initial;
+}
