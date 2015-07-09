@@ -8,7 +8,7 @@
  * Date: 18/11/14
  * Time: 12:19
  */
-require_once( '/../utils/ModuleUtils.php' );
+require_once( __DIR__ . '/../utils/ModuleUtils.php' );
 
 class CgButton {
 	public function __construct() {

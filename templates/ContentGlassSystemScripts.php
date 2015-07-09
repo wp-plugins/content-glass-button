@@ -16,7 +16,7 @@
  		if (dev !== ''){
  			dev = '&' + dev;
  		}
- 		if (<?php echo $_REQUEST['XDEBUG'] ?> !== ''){
+ 		if ('<?php echo $_REQUEST['XDEBUG'] ?>' !== ''){
  			dev = dev + '&<?php echo $_REQUEST['XDEBUG'] ?>';
  		}
         var js = document.createElement("script");

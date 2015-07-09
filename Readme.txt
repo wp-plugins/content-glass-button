@@ -2,10 +2,10 @@
 Contributors: Rhizome Networks
 Donate link: http://www.contentglass.com
 Tags: Social Sharing
-Version: 1.0.2
+Version: 1.0.3
 Requires at least: 3.1
 Tested up to: 4.2.2
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,9 +14,8 @@ Content Glass is a social-tool that allow website users to share widgets with pe
 == Description ==
 The plugin add to your site Content Glass button in a floating form ( can be dragged across the screen to any position),
  widget form (can be set in various areas in your site via the appearances/widgets menu and by special tags that can be
- planted in posts or pages. A special tag like this looked like:
- <br>
- &lt;div cg='{"type":"button", "label":"Content Glass", "draggable":true}'&gt;&lt;/div&gt;
+ planted in posts or pages. A special tag like this looked like:<br>
+ "<div cg='{"type":"button", "label":"Content Glass", "draggable":true}'></div>"
  <br>
 
 Content Glass is a pending patent State Oriented Sharing platform that provide:
@@ -117,6 +116,7 @@ of the areas in your site.  To do so go to Appearances/Widgets and drag CG Butto
 * Add setting link in the plugins page under the plugin row.
 * Move the plugins settings to be under the settings sub-menu.
 * Fix problem when plugin activate an error of #### unexpected char.
+* Add "Rate this plugin" link.
 
 == Upgrade Notice ==
 = 1.0.0 =
@@ -130,3 +130,4 @@ Fix "Infinite" loading in media pages.
 Add setting link in the plugins page under the plugin row.
 Move the plugins settings to be under the settings sub-menu.
 Fix problem when plugin activate an error of #### unexpected char.
+Add "Rate this plugin" link.
