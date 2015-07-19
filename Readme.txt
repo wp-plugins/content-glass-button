@@ -12,35 +12,41 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Content Glass is a social-tool that allow website users to share widgets with peers-group in association with page address, domain or TLD.
 
 == Description ==
-The plugin add to your site Content Glass button in a floating form ( can be dragged across the screen to any position),
- widget form (can be set in various areas in your site via the appearances/widgets menu and by special tags that can be
- planted in posts or pages. A special tag like this looked like:
- <br>
- "&lt;div cg='{"type":"button", "label":"Content Glass", "draggable":true}'&gt;&lt;/div&gt;"
- <br>
 
-Content Glass is a pending patent State Oriented Sharing platform that provide:
+<h3>Overview</h3>
+Content Glass is a pending patent State Oriented Sharing platform that provide a combination of 'Sharing tools', 'API' for developers and data 'services'. Content Glass platform is evolving and currently running in a beta stage.
 
-1. Sharing tools.
-2. API for developers.
-3. Added value services.
+This plugin install the CG-Button Social-Tool on your website. Currently that main social-tool experimented as part of beta stage.
 
-The CG platform is developed by Rhizome Networks LTD and you can read
-more about this platform by visiting our website.
+CG-Button is in fact an instance of Content Glass application, developed with CG Web client API that present a small button widget on the screen. Clicking the button users are navigated to gallery of content Glass Widgets. These CG widgets can be shared with friends.
 
-Installing Content Glass module on your website provide the
-following advantages:
+CG sharing is managed by layers. Each layer represent a 'state' for which widget is associated. A state can be simple code such as page-url but it can also be composed of multiple fields and properties. While CG Web client API provide a way to share widget over public layers, the CG-Button tool provide only widgets that can be shared by closed peers-groups! (The only exception is Experts-Widget that is part of <a href="http://experts.glass">Experts Glass</a> framework), and in the scope of one of three states - page-url (default for most cases, domain, TLD).
+
+Sharing on public layers can be archived only when website owner develop its own CG application.  Developing your own CG app provide much more flexibility of controlling the state-oriented-sharing scenario but is subject for more advanced discussion.
+
+When visitor of your website share widget with closed peers-groups of friends,  all the participants are able to see the widget when encountering the same state. In the case of since CG app for website it means for example that is a widget was associated with page, the page URL is the context state for which widget is associated with and friends will be able to see the widget (after login for shared account) if visiting the same page. The principle of state-oriented-sharing is much broader then that and not limited to web apps as described below and in more details on our website.
+
+The user experience that is theretofore achieved by installing the CG-Button WP plugin is that of letting visitors of your website a way for sharing various CG widgets with friends. And of course CG API can be used for creating your own widgets and declare then on your website so that your custom widget library will automatically be imported into the CG-Button widgets gallery.
+
+Content Glass provide application framework that let various application load in a similar manner by the core Web client API. The current plugin is equipped with two CG apps:
+
+- General CG-Button : include multiple widgets of various kinds
+- E-commerce CG-Button: include small selection of widgets + experts-glass framework
+
+Future versions of this plugin will let you set your own Content Glass apps too.
+
+Installing Content Glass module on your website provide the following advantages:
 
 1. Exposing CG sharing tools to visitors of your website.
 2. Creating your own widgets or even your own CG app and run on your website.
 3. Having applications framework on your website that can be used for running
-   in-house of third party tools in the form of CG Widgets that extend your
-   website without you need to change anything in the code of your website.
-4. Having the ability o f dynamic state-oriented customization
-   of website presence.
+in-house of third party tools in the form of CG Widgets that extend your
+website without you need to change anything in the code of your website.
+4. Having the ability of dynamic state-oriented customization
+of website presence.
 
 <a href="http://www.content-glass.org" target="_blank">Sample Website</a>
-
+<h3>State Oriented Sharing</h3>
 State Oriented Sharing is a sharing paradigm in which content in the form of
 widgets is shared in relation with defined state of objects and things - that
 may include both: virtual, physical or even physiological objects and states.
@@ -54,6 +60,17 @@ Content Glass platform provide multiple APIs for creating State Oriented
 Sharing apps. In this case we are using the Web API to let you run your own CG
 apps on your website or sharing-tools we provide for various
 environments and cases.
+<h3>Options for embedding the CG-Button</h3>
+There are three main options for embedding CG-Button on our website:
+1. Enabling the main CG-Button via settings page.
+2. Using CG-Button widget
+3. Embedding special HTML tag into yor posts or pages.
+<pre> "&lt;div cg='{"type":"button", "label":"Content Glass", "draggable":true}'&gt;&lt;/div&gt;"
+</pre>
+
+<h3>Read more</h3>
+The CG platform is developed by Rhizome Networks LTD and you can read
+more about this platform by visiting <a href="http://www.contentglass.com">content-glass website</a>.
 
 == Installation ==
 Method 1:<br>
