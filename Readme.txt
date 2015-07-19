@@ -22,13 +22,13 @@ CG-Button is in fact an instance of Content Glass application, developed with CG
 
 CG sharing is managed by layers. Each layer represent a 'state' for which widget is associated. A state can be simple code such as page-url but it can also be composed of multiple fields and properties. While CG Web client API provide a way to share widget over public layers, the CG-Button tool provide only widgets that can be shared by closed peers-groups! (The only exception is Experts-Widget that is part of <a href="http://experts.glass">Experts Glass</a> framework), and in the scope of one of three states - page-url (default for most cases, domain, TLD).
 
-Sharing on public layers can be archived only when website owner develop its own CG application.  Developing your own CG app provide much more flexibility of controlling the state-oriented-sharing scenario but is subject for more advanced discussion.
+Sharing on public layers can be archived only when website owner develop its own CG application. Developing your own CG app provide much more flexibility of controlling the state-oriented-sharing scenario but is subject for more advanced discussion.
 
-When visitor of your website share widget with closed peers-groups of friends,  all the participants are able to see the widget when encountering the same state. In the case of since CG app for website it means for example that is a widget was associated with page, the page URL is the context state for which widget is associated with and friends will be able to see the widget (after login for shared account) if visiting the same page. The principle of state-oriented-sharing is much broader then that and not limited to web apps as described below and in more details on our website.
+When visitor of your website share widget with closed peers-groups of friends, all the participants are able to see the widget when encountering the same state. In the case of since CG app for website it means for example that is a widget was associated with page, the page URL is the context state for which widget is associated with and friends will be able to see the widget (after login for shared account) if visiting the same page. The principle of state-oriented-sharing is much broader then that and not limited to web apps as described below and in more details on our website.
 
 The user experience that is theretofore achieved by installing the CG-Button WP plugin is that of letting visitors of your website a way for sharing various CG widgets with friends. And of course CG API can be used for creating your own widgets and declare then on your website so that your custom widget library will automatically be imported into the CG-Button widgets gallery.
 
-Content Glass provide application framework that let various application load in a similar manner by the core Web client API. The current plugin is equipped with two CG apps:
+Content Glass provide application framework that let various applications load in a similar manner by the core Web client API. The current plugin is equipped with two CG apps:
 
 - General CG-Button : include multiple widgets of various kinds
 - E-commerce CG-Button: include small selection of widgets + experts-glass framework
