@@ -38,6 +38,7 @@ function cg_button_authorize() {
 			global $cg_accessToken;
 			$cg_accessToken = $result->data->access_token;
 			setcookie( 'wp_rhz_session_id', $result->data->session_id );
+			$_COOKIE['wp_rhz_session_id'] = $result->data->session_id;
 			add_action( 'wp_enqueue_scripts', 'cg_button_scripts' );
 
 			function cg_button_scripts() {
