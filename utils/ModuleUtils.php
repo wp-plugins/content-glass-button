@@ -17,9 +17,6 @@ define( 'CG_BUTTON_TEST_APP_ID', '559a1b7f3de3a' );
 define( 'CG_BUTTON_TEST_API_KEY', '559a1a7d380b3-dev' );
 define( 'CG_BUTTON_DEFAULT_FONT_SIZE', 14 );
 define( 'CG_BUTTON_DEFAULT_STYLE', '' );
-define( 'CG_BUTTON_DEFAULT_LEFT', 0 );
-define( 'CG_BUTTON_DEFAULT_TOP', 0 );
-define( 'CG_BUTTON_DEFAULT_POSITION', 'absolute' );
 define( 'CG_BUTTON_DEFAULT_APPLICATION_DATA', '{"button": {"name": "button", "type": "button"}}' );
 define( 'CG_BUTTON_DEFAULT_APPLICATION', 'button' );
 
@@ -29,14 +26,10 @@ define( 'CG_BUTTON_THEME', 'cg_button_default_theme' );
 define( 'CG_BUTTON_VERSION', 'cg_button_version' );
 define( 'CG_BUTTON_STYLE', 'cg_button_style' );
 define( 'CG_BUTTON_LABEL', 'cg_button_label' );
-define( 'CG_BUTTON_TOP', 'cg_button_top' );
-define( 'CG_BUTTON_LEFT', 'cg_button_left' );
-define( 'CG_BUTTON_POSITION', 'cg_button_position' );
 define( 'CG_BUTTON_FONT_SIZE', 'cg_button_font_size' );
 define( 'CG_BUTTON_ENABLE', 'cg_button_enable' );
 define( 'CG_BUTTON_APPLICATION_DATA', 'cg_button_application_data' );
 define( 'CG_BUTTON_APPLICATION', 'cg_button_application' );
-define( 'CG_BUTTON_SESSION_ID', 'cg_button_session_id' );
 
 //TODO for propduction chnage to prod
 define( 'CG_DEV_MODE', 'prod' );
@@ -67,7 +60,8 @@ class CGModuleUtils {
 
 		$content = StringUtils::replace_all( $content, '[ACCESS_TOKEN]', $accessToken, 14 );
 
-		$content = StringUtils::replace_all( $content, '[SESSION_ID]', get_option( CG_BUTTON_SESSION_ID ), 12 );
+		$sessId = isset( $_COOKIE['wp_rhz_session_id'] ) === true? $_COOKIE['wp_rhz_session_id'] : '';
+		$content = StringUtils::replace_all( $content, '[SESSION_ID]', $sessId, 12 );
 
 		$apps_data = json_decode( self::get_application_types() );
 		if ( $apps_data->status === 1 ) {
@@ -125,7 +119,9 @@ class CGModuleUtils {
 		}
 		$params['APP_ID'] = $appId;
 		$params['ACCESS_TOKEN'] = $accessToken;
-		$params['SESSION_ID'] = get_option( CG_BUTTON_SESSION_ID );
+
+		$sessId = isset($_COOKIE['wp_rhz_session_id']) === true? $_COOKIE['wp_rhz_session_id'] : '';
+		$params['SESSION_ID'] = $sessId;
 
 		$apps_data = json_decode( self::get_application_types() );
 		if ( $apps_data->status === 1 ) {
@@ -204,6 +200,24 @@ class CGModuleUtils {
 		} else {
 			echo 'Error in getting floating button script';
 		}
+	}
+
+	public static function get_customize_button_params(){
+		$params = array();
+
+		$label = get_option( CG_BUTTON_LABEL );
+		if ( null === $label ) {
+			$label = CG_BUTTON_DEFAULT_LABEL;
+		}
+		$params['label'] = $label;
+		$style = get_option( CG_BUTTON_STYLE );
+		$style = StringUtils::replace_all( $style, "\n", '', 1 ); //we remove new lines if the user enter some
+		$style = StringUtils::replace_all( $style, "\r", '', 1 );
+		if ( strpos( $style, 'position' ) === false ) {
+			$style = $style . 'position:fixed;';
+		}
+		$params['style'] = $style;
+		return $params;
 	}
 
 	public static function get_widget_script( $label, $style) {

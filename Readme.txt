@@ -2,10 +2,10 @@
 Contributors: Rhizome Networks
 Donate link: http://www.contentglass.com
 Tags: Social Sharing
-Version: 1.0.3
+Version: 1.0.5
 Requires at least: 3.1
 Tested up to: 4.2.2
-Stable tag: 1.0.3
+Stable tag: 1.0.5
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -135,6 +135,14 @@ of the areas in your site.  To do so go to Appearances/Widgets and drag CG Butto
 * Move the plugins settings to be under the settings sub-menu.
 * Fix problem when plugin activate an error of #### unexpected char.
 * Add "Rate this plugin" link.
+* Fix plugin cleanup when deleted.
+
+= 1.0.4 =
+* Fix draggable button not be render on some browser.
+* Add more explanations in the settings page.
+
+= 1.0.5 =
+* Fix authentication problem.
 
 == Upgrade Notice ==
 = 1.0.0 =
@@ -149,3 +157,9 @@ Add setting link in the plugins page under the plugin row.
 Move the plugins settings to be under the settings sub-menu.
 Fix problem when plugin activate an error of #### unexpected char.
 Add "Rate this plugin" link.
+Fix plugin cleanup when deleted.
+= 1.0.4 =
+Fix draggable button rendering on some browser.
+Add more explanations in the settings page.
+= 1.0.5 =
+Fix authentication problem.

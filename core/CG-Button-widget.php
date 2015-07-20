@@ -104,11 +104,8 @@ class CgButtonWidget extends WP_Widget {
 	 */
 	public function update( $new_instance, $old_instance ) {
 		$instance = array();
-//		foreach ( $new_instance as $key => $value ) {
-//			$instance[ $key ] = ( ! empty( $value ) ) ? strip_tags( $value ) : '';
-//		}
-		$instance[CG_WIDGET_TITLE] = $_REQUEST['widget-' . $_REQUEST['widget-id'] . '-' . CG_WIDGET_TITLE];
-		$instance[CG_WIDGET_STYLE] = $_REQUEST['widget-' . $_REQUEST['widget-id'] . '-' .  CG_WIDGET_STYLE];
+		$instance[ CG_WIDGET_TITLE ] = $_REQUEST['widget-' . $_REQUEST['widget-id'] . '-' . CG_WIDGET_TITLE];
+		$instance[ CG_WIDGET_STYLE ] = $_REQUEST['widget-' . $_REQUEST['widget-id'] . '-' .  CG_WIDGET_STYLE];
 		return $instance;
 	}
 }
