@@ -12,7 +12,7 @@
  * Plugin Name: CG Button
  * Plugin URI: http://www.contentglass.com/wordpress-plugin-help
  * Description: Add the CG Button to your Wordpress site
- * Version: 1.0.4
+ * Version: 1.0.5
  * Author: Rhizome Networks
  * Author URI: http://www.contentglass.com
  * License:

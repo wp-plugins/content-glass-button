@@ -20,6 +20,5 @@ delete_option( CG_BUTTON_API_KEY );
 delete_option( CG_BUTTON_THEME );
 delete_option( CG_BUTTON_VERSION );
 delete_option( CG_BUTTON_STYLE );
-delete_option( CG_BUTTON_SESSION_ID );
 delete_option( CG_BUTTON_ENABLE );
 delete_option( CG_BUTTON_LABEL );

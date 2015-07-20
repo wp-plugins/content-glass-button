@@ -26,7 +26,7 @@ function cg_button_authorize() {
 	global $pagenow;
 	$appId = esc_attr( get_option( CG_BUTTON_APP_ID ) );
 	$apiKey = esc_attr( get_option( CG_BUTTON_API_KEY ) );
-	$sessId = get_option( CG_BUTTON_SESSION_ID );
+	$sessId = isset( $_COOKIE['wp_rhz_session_id'] ) === true ? $_COOKIE['wp_rhz_session_id'] : '';
 	$url = CG_AUTH_URL . '?api_key=' . $apiKey . '&app_id=' . $appId . '&RHZ_SESSION_ID=' . $sessId;
 	if ( CG_DEV_MODE ) {
 		$url = $url . '&' . XDEBUG_TOKEN . XDEBUG;
@@ -37,7 +37,7 @@ function cg_button_authorize() {
 		if ( ! in_array( $pagenow, $ERROR_PAGES ) ) {
 			global $cg_accessToken;
 			$cg_accessToken = $result->data->access_token;
-			update_option( CG_BUTTON_SESSION_ID, $result->data->session_id );
+			setcookie( 'wp_rhz_session_id', $result->data->session_id );
 			add_action( 'wp_enqueue_scripts', 'cg_button_scripts' );
 
 			function cg_button_scripts() {
@@ -114,11 +114,6 @@ function register_mysettings() {
 	register_setting( 'cg-button-settings-group', CG_BUTTON_LABEL );
 	register_setting( 'cg-button-settings-group', CG_BUTTON_STYLE );
 	register_setting( 'cg-button-settings-group', CG_BUTTON_THEME );
-	register_setting( 'cg-button-settings-group', CG_BUTTON_SESSION_ID );
-
-	//	register_setting( 'cg-button-settings-group', CG_BUTTON_TOP );
-	//	register_setting( 'cg-button-settings-group', CG_BUTTON_LEFT );
-	//	register_setting( 'cg-button-settings-group', CG_BUTTON_POSITION );
 }
 
 /**
