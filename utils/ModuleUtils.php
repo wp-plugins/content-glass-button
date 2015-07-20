@@ -206,6 +206,24 @@ class CGModuleUtils {
 		}
 	}
 
+	public static function get_customize_button_params(){
+		$params = array();
+
+		$label = get_option( CG_BUTTON_LABEL );
+		if ( null === $label ) {
+			$label = CG_BUTTON_DEFAULT_LABEL;
+		}
+		$params['label'] = $label;
+		$style = get_option( CG_BUTTON_STYLE );
+		$style = StringUtils::replace_all( $style, "\n", '', 1 ); //we remove new lines if the user enter some
+		$style = StringUtils::replace_all( $style, "\r", '', 1 );
+		if ( strpos( $style, 'position' ) === false ) {
+			$style = $style . 'position:fixed;';
+		}
+		$params['style'] = $style;
+		return $params;
+	}
+
 	public static function get_widget_script( $label, $style) {
 		$content = file_get_contents( __DIR__ . '/../templates/WidgetButtonScript.html', FILE_USE_INCLUDE_PATH );
 		$content = StringUtils::replace_all( $content, '[CG_LABEL]', $label, 10 );

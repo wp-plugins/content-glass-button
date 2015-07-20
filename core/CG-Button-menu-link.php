@@ -16,14 +16,18 @@ if ( ! defined( 'CG_BUTTON_WIDGET_ENABLE' ) ) {
 }
 
 global $ERROR_PAGES;
+global $authRetry;
+$authRetry = true;
 $ERROR_PAGES = array( 'options-general.php', 'admin.php', 'options.php', );
 
 function cg_button_authorize() {
+	global $authRetry;
 	global $ERROR_PAGES;
 	global $pagenow;
 	$appId = esc_attr( get_option( CG_BUTTON_APP_ID ) );
 	$apiKey = esc_attr( get_option( CG_BUTTON_API_KEY ) );
-	$url = CG_AUTH_URL . '?api_key=' . $apiKey . '&app_id=' . $appId . '&RHZ_SESSION_ID=' . get_option( CG_BUTTON_SESSION_ID );
+	$sessId = get_option( CG_BUTTON_SESSION_ID );
+	$url = CG_AUTH_URL . '?api_key=' . $apiKey . '&app_id=' . $appId . '&RHZ_SESSION_ID=' . $sessId;
 	if ( CG_DEV_MODE ) {
 		$url = $url . '&' . XDEBUG_TOKEN . XDEBUG;
 	}
@@ -49,20 +53,24 @@ function cg_button_authorize() {
 				);
 				wp_enqueue_script( 'cg-system-script' );
 			}
-
-			//			echo ent2ncr( CGModuleUtils::get_system_scripts( $accessToken ) );
 		}
 	} else {
-		global $cg_error;
-		$cg_error = json_decode( $result->message );
-		function cg_button_notice() {
-			if ( current_user_can( 'install_plugins' ) ) {
-				global $cg_error;
-				echo '<div class="error"><p>' . $cg_error->message . '</p></div>';
+		if ( $authRetry && $result->http_code === 401 ) {
+			$authRetry = false;
+			delete_option( CG_BUTTON_SESSION_ID );
+			cg_button_authorize();
+		} else {
+			global $cg_error;
+			$cg_error = json_decode( $result->message );
+			function cg_button_notice() {
+				if ( current_user_can( 'install_plugins' ) ) {
+					global $cg_error;
+					echo '<div class="error"><p>' . $cg_error->message . '</p></div>';
+				}
 			}
-		}
-		if ( in_array( $pagenow, $ERROR_PAGES ) ) {
-			add_action( 'admin_notices', 'cg_button_notice' );
+			if ( in_array( $pagenow, $ERROR_PAGES ) ) {
+				add_action( 'admin_notices', 'cg_button_notice' );
+			}
 		}
 	}
 }
@@ -188,7 +196,7 @@ function cg_button_settings_page() {
 	$content = StringUtils::replace_all( $content, '[TEST_API_KEY]', CG_BUTTON_TEST_API_KEY );
 
 	$inputElm = create_input_element( 'text', CG_BUTTON_APP_ID );
-	$content = StringUtils::replace_all( $content, '[API_ID_INPUT]', $inputElm->to_string() );
+	$content = StringUtils::replace_all( $content, '[APP_ID_INPUT]', $inputElm->to_string() );
 
 	$inputElm = create_input_element( 'text', CG_BUTTON_API_KEY );
 	$content = StringUtils::replace_all( $content, '[API_KEY_INPUT]', $inputElm->to_string() );

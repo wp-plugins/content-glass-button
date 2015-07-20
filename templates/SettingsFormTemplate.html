@@ -11,35 +11,55 @@
             <tr valign="top">
                 <th scope="row">APP Id <!--<a href="#" onclick="wordPressCgPlugin.openQuickRegistration()"
 											  style="font-size: 12px;">(click here to get APP ID)</a>-->
+                    <br><small style="font-size: x-small;">
+                        You can use the shared AppId or get your own
+                        <a href="http://developers.contentglass.com/admin/structure/entity-type/application/application/add?destination=my_applications" target="_blank">Here</a>.
+                    </small>
                 </th>
                 <td>
-                    [API_ID_INPUT]
+                    [APP_ID_INPUT]
                     <label style="color: red; font-weight: bold;" title="Required field">*</label>
                 </td>
             </tr>
             <tr valign="top">
-                <th scope="row">API Key</th>
+                <th scope="row">API Key
+                    <br><small style="font-size: x-small;">
+                        You can use the shared API key or get your own
+                        <a href="http://developers.contentglass.com/my-developer-account-view" target="_blank">Here</a>.
+                    </small>
+                </th>
                 <td>
                     [API_KEY_INPUT]
                     <label style="color: red; font-weight: bold;" title="Required field">*</label>
                 </td>
             </tr>
             <tr valign="top">
-                <th scope="row">Version</th>
+                <th scope="row">Version
+                    <br><small style="font-size: x-small;">
+                        The API version is not affected by the plugin version.<br>
+                        You can choose the version you want or latest for always be up to date with the most updated Content Glass API.
+                    </small>
+                </th>
                 <td>
                     [VERSIONS_INPUT]
                 </td>
             </tr>
             <tr valign="top">
-                <th scope="row">Application type</th>
+                <th scope="row">Application type
+                    <br><small style="font-size: x-small;">
+                        The Primary button application type:<br>
+                        button: include multiple widgets of various kinds.<br>
+                        ecom: include small selection of widgets for ecommerce purposes + experts-glass framework.<br>
+                    </small>
+                </th>
                 <td>
                     [APP_TYPES_INPUT]
                 </td>
             </tr>
             <tr valign="top">
-                <th scope="row">Enable Floating CG Button
+                <th scope="row">Enable Primary CG Button
                     <br><small style="font-size: x-small;">
-                        Floating button is presented on some position of your website.
+                        Primary button is presented on some position of your website and is draggable.
                         You can also set the button as a WP Widget.
                     </small>
                 </th>
@@ -48,13 +68,19 @@
                 </td>
             </tr>
             <tr valign="top">
-                <th scope="row">Floating Button label</th>
+                <th scope="row">Primary Button label
+                    <br>
+                    <small style="font-size: x-small;">
+                        The label that will be presented on the primary button.
+                        button widgets and button tags have there own label and wont be efected by this value.
+                    </small>
+                </th>
                 <td>
                     [BUTTON_LABEL_INPUT]
                 </td>
             </tr>
             <tr valign="top">
-                <th scope="row">Floating CG Button style
+                <th scope="row">Primary CG Button style
                     <br>
                     <small style="font-size: x-small;">
                         Example: font-size: 14px; position: fixed; top: 0px; left: 100px;
@@ -66,7 +92,13 @@
             </tr>
 
             <tr valign="top">
-                <th scope="row">Default CG Button theme</th>
+                <th scope="row">Default CG Button theme
+                    <br>
+                    <small style="font-size: x-small;">
+                        This is the default theme, users can change theme using the button menu and it will overwrite
+                        this default value.
+                    </small>
+                </th>
                 <td>
                     [BUTTON_THEMES_INPUT]
                 </td>
