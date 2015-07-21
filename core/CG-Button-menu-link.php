@@ -44,10 +44,11 @@ function cg_button_authorize() {
 			function cg_button_scripts() {
 				global $cg_accessToken;
 				$params = CGModuleUtils::get_system_scripts_params( $cg_accessToken );
+				$queryParams = http_build_query($params);
 				$cg_accessToken = '';
 				wp_register_script(
 					'cg-system-script',
-					plugins_url( '/' . PLUGIN_DIRECTORY . '/templates/ContentGlassSystemScripts.php?' . CGModuleUtils::parse_params( $params ) ),
+					plugins_url( '/' . PLUGIN_DIRECTORY . '/templates/ContentGlassSystemScripts.php?' . $queryParams ),
 					false,
 					false,
 					false

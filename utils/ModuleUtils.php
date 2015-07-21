@@ -50,66 +50,6 @@ define( 'ABS_PLUGIN_PATH', ABSPATH . 'wp-content/plugins/content-glass-button' )
 
 
 class CGModuleUtils {
-	public static function get_system_scripts($accessToken) {
-		$content = file_get_contents( __DIR__ . '/../templates/ContentGlassSystemScripts.html' );
-		$appId = get_option( CG_BUTTON_APP_ID );
-		if ( null === $appId ) {
-			$appId = '';
-		}
-		$content = StringUtils::replace_all( $content, '[APP_ID]', $appId, 8 );
-
-		$content = StringUtils::replace_all( $content, '[ACCESS_TOKEN]', $accessToken, 14 );
-
-		$sessId = isset( $_COOKIE['wp_rhz_session_id'] ) === true? $_COOKIE['wp_rhz_session_id'] : '';
-		$content = StringUtils::replace_all( $content, '[SESSION_ID]', $sessId, 12 );
-
-		$apps_data = json_decode( self::get_application_types() );
-		if ( $apps_data->status === 1 ) {
-			$apps_data = $apps_data->data->applications;
-		} else {
-			$apps_data = json_decode( CG_BUTTON_DEFAULT_APPLICATION_DATA );
-		}
-		$app_type = '' . get_option( CG_BUTTON_APPLICATION );
-		if ( null === $app_type ) {
-			$app_type = CG_BUTTON_DEFAULT_APPLICATION;
-		}
-		if ( isset( $apps_data->{$app_type} ) ) {
-			$type = $apps_data->{$app_type};
-		} else {
-			$type = $apps_data->{CG_BUTTON_DEFAULT_APPLICATION};
-		}
-
-		$content = StringUtils::replace_all( $content, '[APP_DATA]', json_encode( $type ), 10 );
-
-		$theme = get_option( CG_BUTTON_THEME );
-		if ( null === $theme ) {
-			$theme = "'" . CG_BUTTON_DEFAULT_THEME . "'";
-		} else {
-			$theme = "'" . $theme . "'";
-		}
-		$content = StringUtils::replace_all( $content, '[DEFAULT_THEME]', $theme, 15 );
-
-		$version = get_option( CG_BUTTON_VERSION );
-		if ( null === $version ) {
-			$version = CG_BUTTON_DEFAULT_VERSION;
-		}
-		$content = StringUtils::replace_all( $content, '[CG_VERSION]', $version, 12 );
-
-		$content = StringUtils::replace_all( $content, '[CG_SERVER]', CG_BUTTON_SERVER_URL, 11 );
-
-		if ( CG_DEV_MODE === 'local' ) {
-			$content = StringUtils::replace_all( $content, '[DEV_MODE]', '&DEV=true', 10 );
-			$content = StringUtils::replace_all( $content, '[XDEBUG]', XDEBUG_TOKEN . XDEBUG, 8 );
-		} else if ( CG_DEV_MODE === 'dev' ) {
-			$content = StringUtils::replace_all( $content, '[DEV_MODE]', '&DEV_HOST=true', 10 );
-			$content = StringUtils::replace_all( $content, '[XDEBUG]', '', 8 );
-		} else {
-			$content = StringUtils::replace_all( $content, '[DEV_MODE]', '', 10 );
-			$content = StringUtils::replace_all( $content, '[XDEBUG]', '', 8 );
-		}
-
-		return $content;
-	}
 
 	public static function get_system_scripts_params($accessToken){
 		$params = array();
@@ -138,7 +78,8 @@ class CGModuleUtils {
 		} else {
 			$type = $apps_data->{CG_BUTTON_DEFAULT_APPLICATION};
 		}
-		$params['APP_DATA'] = json_encode( $type );
+		//make sure you pass the data safely to ContentGlassSystemScript. Also note JSON_UNESCAPED_SLASHES that provide lean url of application data
+		$params['APP_DATA'] = base64_encode(json_encode($type, JSON_UNESCAPED_SLASHES));
 
 		$theme = get_option( CG_BUTTON_THEME );
 		if ( null === $theme ) {
@@ -167,39 +108,6 @@ class CGModuleUtils {
 		}
 
 		return $params;
-	}
-
-	public static function parse_params( $params ) {
-		$paramsStr = '';
-		foreach ( $params as $key => $value ) {
-			$paramsStr = $paramsStr . $key . '=' . $value . '&';
-		}
-		$paramsStr = substr( $paramsStr, 0, strlen( $paramsStr ) - 1 );
-		return $paramsStr;
-	}
-
-	public static function get_customize_button_dev_script() {
-		$content = file_get_contents( __DIR__ . '/../templates/CustomizeButtonScript.html', FILE_USE_INCLUDE_PATH );
-
-		if ( false !== $content ) {
-			$label = get_option( CG_BUTTON_LABEL );
-			if ( null === $label ) {
-				$label = CG_BUTTON_DEFAULT_LABEL;
-			}
-			$content = StringUtils::replace_all( $content, '[CG_LABEL]', $label, 10 );
-
-			$style = get_option( CG_BUTTON_STYLE );
-			$style = StringUtils::replace_all( $style, "\n", '', 1 ); //we remove new lines if the user enter some
-			$style = StringUtils::replace_all( $style, "\r", '', 1 );
-			if ( strpos( $style, 'position' ) === false ) {
-				$style = $style . 'position:fixed;';
-			}
-			$content = StringUtils::replace_all( $content, '[CG_STYLE]', $style, 10 );
-
-			return $content;
-		} else {
-			echo 'Error in getting floating button script';
-		}
 	}
 
 	public static function get_customize_button_params(){
