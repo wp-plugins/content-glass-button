@@ -10,6 +10,7 @@
 require_once( __DIR__ . '/../utils/ModuleUtils.php' );
 require_once( 'HtmlElement.php' );
 require_once( 'CG-Button-widget.php' );
+const WP_RHZ_SESSION_ID = 'wp_rhz_session_id';
 define( 'PLUGIN_DIRECTORY', 'content-glass-button' );
 if ( ! defined( 'CG_BUTTON_WIDGET_ENABLE' ) ) {
 	define( 'CG_BUTTON_WIDGET_ENABLE', 'cg_button_widget_enable' );
@@ -26,7 +27,7 @@ function cg_button_authorize() {
 	global $pagenow;
 	$appId = esc_attr( get_option( CG_BUTTON_APP_ID ) );
 	$apiKey = esc_attr( get_option( CG_BUTTON_API_KEY ) );
-	$sessId = isset( $_COOKIE['wp_rhz_session_id'] ) === true ? $_COOKIE['wp_rhz_session_id'] : '';
+	$sessId = isset( $_COOKIE[WP_RHZ_SESSION_ID] ) === true ? $_COOKIE[WP_RHZ_SESSION_ID] : '';
 	$url = CG_AUTH_URL . '?api_key=' . $apiKey . '&app_id=' . $appId . '&RHZ_SESSION_ID=' . $sessId;
 	if ( CG_DEV_MODE ) {
 		$url = $url . '&' . XDEBUG_TOKEN . XDEBUG;
@@ -37,8 +38,8 @@ function cg_button_authorize() {
 		if ( ! in_array( $pagenow, $ERROR_PAGES ) ) {
 			global $cg_accessToken;
 			$cg_accessToken = $result->data->access_token;
-			setcookie( 'wp_rhz_session_id', $result->data->session_id );
-			$_COOKIE['wp_rhz_session_id'] = $result->data->session_id;
+			setcookie( WP_RHZ_SESSION_ID, $result->data->session_id );
+			$_COOKIE[WP_RHZ_SESSION_ID] = $result->data->session_id;
 			add_action( 'wp_enqueue_scripts', 'cg_button_scripts' );
 
 			function cg_button_scripts() {
@@ -59,7 +60,8 @@ function cg_button_authorize() {
 	} else {
 		if ( $authRetry && $result->http_code === 401 ) {
 			$authRetry = false;
-			delete_option( CG_BUTTON_SESSION_ID );
+			setcookie(WP_RHZ_SESSION_ID, "", time() - 3600);
+			unset ($_COOKIE[WP_RHZ_SESSION_ID]);
 			cg_button_authorize();
 		} else {
 			global $cg_error;
