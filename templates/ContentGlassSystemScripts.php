@@ -1,8 +1,14 @@
+<?php
+$appData = base64_decode($_REQUEST['APP_DATA']);
+$ops = json_decode($appData);
+?>
+
     window.cg = {
-        CG_JQ_UI_THEME: <?php echo $_REQUEST['DEFAULT_THEME'] ?>
+        CG_JQ_UI_THEME: <?php echo $_REQUEST['DEFAULT_THEME'] ?>,
+        SSE_DELAY:<?php echo isset($ops->sse_delay)?$ops->sse_delay : 30000;?>
     }
     window.cgAsyncReady = function () {
-        var appData = <?php echo base64_decode($_REQUEST['APP_DATA']) ?>;
+        var appData = <?=$appData?>;
         CGAPI.loadApp(appData, function onAppLoad(application) {
             application.init();
         });
