@@ -2,7 +2,7 @@
 Contributors: Rhizome Networks
 Donate link: http://www.contentglass.com
 Tags: Social Sharing
-Version: 1.0.5.3
+Version: 1.0.5.4
 Requires at least: 3.1
 Tested up to: 4.2.2
 Stable tag: 1.0.5

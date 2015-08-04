@@ -18,35 +18,33 @@ if ( ! defined( 'CG_BUTTON_WIDGET_ENABLE' ) ) {
 
 global $ERROR_PAGES;
 global $authRetry;
-$authRetry = true;
+$authRetry   = true;
 $ERROR_PAGES = array( 'options-general.php', 'admin.php', 'options.php', );
 
 function cg_button_authorize() {
 	global $authRetry;
 	global $ERROR_PAGES;
 	global $pagenow;
-	$appId = esc_attr( get_option( CG_BUTTON_APP_ID ) );
+	$appId  = CGModuleUtils::get_selected_app_id();
 	$apiKey = esc_attr( get_option( CG_BUTTON_API_KEY ) );
-	$sessId = isset( $_COOKIE[WP_RHZ_SESSION_ID] ) === true ? $_COOKIE[WP_RHZ_SESSION_ID] : '';
-	$url = CG_AUTH_URL . '?api_key=' . $apiKey . '&app_id=' . $appId . '&RHZ_SESSION_ID=' . $sessId;
+	$sessId = isset( $_COOKIE[ WP_RHZ_SESSION_ID ] ) === true ? $_COOKIE[ WP_RHZ_SESSION_ID ] : '';
+	$url    = CG_AUTH_URL . '?api_key=' . $apiKey . '&app_id=' . $appId . '&RHZ_SESSION_ID=' . $sessId;
 	if ( CG_DEV_MODE ) {
 		$url = $url . '&' . XDEBUG_TOKEN . XDEBUG;
 	}
-	$data = CGModuleUtils::send_get_request( $url );
+	$data   = CGModuleUtils::send_get_request( $url );
 	$result = json_decode( $data );
 	if ( $result->status === 1 ) {
 		if ( ! in_array( $pagenow, $ERROR_PAGES ) ) {
-			global $cg_accessToken;
-			$cg_accessToken = $result->data->access_token;
+			//global $cg_accessToken;
+			//$cg_accessToken = $result->data->access_token;
 			setcookie( WP_RHZ_SESSION_ID, $result->data->session_id );
-			$_COOKIE[WP_RHZ_SESSION_ID] = $result->data->session_id;
 			add_action( 'wp_enqueue_scripts', 'cg_button_scripts' );
 
 			function cg_button_scripts() {
-				global $cg_accessToken;
-				$params = CGModuleUtils::get_system_scripts_params( $cg_accessToken );
-				$queryParams = http_build_query($params);
-				$cg_accessToken = '';
+				$params      = CGModuleUtils::get_system_scripts_params();
+				$queryParams = http_build_query( $params );
+				//$cg_accessToken = '';
 				wp_register_script(
 					'cg-system-script',
 					plugins_url( '/' . PLUGIN_DIRECTORY . '/templates/ContentGlassSystemScripts.php?' . $queryParams ),
@@ -60,8 +58,8 @@ function cg_button_authorize() {
 	} else {
 		if ( $authRetry && $result->http_code === 401 ) {
 			$authRetry = false;
-			setcookie(WP_RHZ_SESSION_ID, "", time() - 3600);
-			unset ($_COOKIE[WP_RHZ_SESSION_ID]);
+			setcookie( WP_RHZ_SESSION_ID, "", time() - 3600 );
+			unset ( $_COOKIE[ WP_RHZ_SESSION_ID ] );
 			cg_button_authorize();
 		} else {
 			global $cg_error;
@@ -72,18 +70,22 @@ function cg_button_authorize() {
 					echo '<div class="error"><p>' . $cg_error->message . '</p></div>';
 				}
 			}
+
 			if ( in_array( $pagenow, $ERROR_PAGES ) ) {
 				add_action( 'admin_notices', 'cg_button_notice' );
 			}
 		}
 	}
 }
+
+
 cg_button_authorize();
 
 // Add settings link on plugin page
 function cg_button_plugin_settings_link( $links ) {
 	$settings_link = '<a href="options-general.php?page=' . PLUGIN_DIRECTORY . '/core/CG-Button-init.php">Settings</a>';
 	array_unshift( $links, $settings_link );
+
 	return $links;
 }
 
@@ -110,10 +112,11 @@ function cg_button_create_menu() {
 
 function register_mysettings() {
 	//register our settings
-	register_setting( 'cg-button-settings-group', CG_BUTTON_APP_ID );
+	register_setting( 'cg-button-settings-group', CG_BUTTON_APP_VERSIONS );
+	register_setting( 'cg-button-settings-group', CG_BUTTON_APP_DATA );
+	register_setting( 'cg-button-settings-group', CG_BUTTON_APP_TYPE );
 	register_setting( 'cg-button-settings-group', CG_BUTTON_API_KEY );
 	register_setting( 'cg-button-settings-group', CG_BUTTON_VERSION );
-	register_setting( 'cg-button-settings-group', CG_BUTTON_APPLICATION );
 	register_setting( 'cg-button-settings-group', CG_BUTTON_ENABLE );
 	register_setting( 'cg-button-settings-group', CG_BUTTON_LABEL );
 	register_setting( 'cg-button-settings-group', CG_BUTTON_STYLE );
@@ -121,7 +124,8 @@ function register_mysettings() {
 }
 
 /**
- * create and input element with the given $type and place is id and name to be $name
+ * create and input element with the given $type and place is id and name to be
+ * $name
  *
  * @param $type
  * @param $name
@@ -129,7 +133,7 @@ function register_mysettings() {
  * @param string $tag
  * @param null $extra
  *
- * @return html_element
+ * @return mixed html_element
  */
 function create_input_element( $type, $name, $tag = 'input', $extra = null ) {
 	$inputElm = new HtmlElement( $tag );
@@ -163,16 +167,16 @@ function create_select_elm( $options, $defaultValue, $name ) {
 	$selectElm->set( 'name', $name );
 	$selectElm->set( 'text', '' );
 
-	foreach ( $options as $option ) {
+	foreach ( $options as $value => $text ) {
 		$optionElm = new HtmlElement( 'option' );
-		$optionElm->set( 'value', $option );
+		$optionElm->set( 'value', $value );
 		if ( null === get_option( $name ) ) {
 			update_option( $name, $defaultValue );
 		}
-		if ( get_option( $name ) === $option ) {
+		if ( get_option( $name ) === $value ) {
 			$optionElm->set_selected();
 		}
-		$optionElm->set( 'text', $option );
+		$optionElm->set( 'text', $text );
 		$selectElm->inject( $optionElm );
 	}
 
@@ -181,7 +185,7 @@ function create_select_elm( $options, $defaultValue, $name ) {
 }
 
 function cg_button_settings_page() {
-	//we first echo the strt of the form.
+	//we first echo the start of the form.
 	echo '<div id="cg-plugin-settings-page" class="wrap">
     <h2><a>CG Button settings</a></h2>
     <form method="post" action="options.php">';
@@ -194,44 +198,27 @@ function cg_button_settings_page() {
 	$content = StringUtils::replace_all( $content, '[TEST_APP_ID]', CG_BUTTON_TEST_APP_ID );
 	$content = StringUtils::replace_all( $content, '[TEST_API_KEY]', CG_BUTTON_TEST_API_KEY );
 
-	$inputElm = create_input_element( 'text', CG_BUTTON_APP_ID );
-	$content = StringUtils::replace_all( $content, '[APP_ID_INPUT]', $inputElm->to_string() );
+	//$inputElm = create_input_element( 'text', CG_BUTTON_APP_ID );
+	//$content = StringUtils::replace_all( $content, '[APP_ID_INPUT]', $inputElm->to_string() );
 
 	$inputElm = create_input_element( 'text', CG_BUTTON_API_KEY );
-	$content = StringUtils::replace_all( $content, '[API_KEY_INPUT]', $inputElm->to_string() );
+	$content  = StringUtils::replace_all( $content, '[API_KEY_INPUT]', $inputElm->to_string() );
 
-	$versions = json_decode( CgModuleUtils::get_versions() );
-	if ( $versions->status === 1 ) {
-		$versions = $versions->data->versions;
-	} else {
-		$versions = array( 'latest' );
-	}
-	$inputElm = create_select_elm( $versions, CG_BUTTON_DEFAULT_VERSION, CG_BUTTON_VERSION );
-	$content = StringUtils::replace_all( $content, '[VERSIONS_INPUT]', $inputElm );
+	$options  = CgModuleUtils::prepare_version_options();
+	$inputElm = create_select_elm( $options, CG_BUTTON_DEFAULT_VERSION, CG_BUTTON_VERSION );
+	$content  = StringUtils::replace_all( $content, '[VERSIONS_INPUT]', $inputElm );
 
-	$appType = json_decode( CgModuleUtils::get_application_types() );
-	$apps = array();
-	if ( null !== $appType ) {
-		if ( $appType->status === 1 ) {
-			$appType = $appType->data->applications;
-			foreach ( $appType as $app ) {
-				array_push( $apps, $app->name );
-			}
-		} else {
-			$apps = array( CG_BUTTON_DEFAULT_APPLICATION );
-		}
-	} else {
-		$apps = array( CG_BUTTON_DEFAULT_APPLICATION );
-	}
-	$inputElm = create_select_elm( $apps, CG_BUTTON_DEFAULT_APPLICATION, CG_BUTTON_APPLICATION );
-	$content = StringUtils::replace_all( $content, '[APP_TYPES_INPUT]', $inputElm );
+	$defAppData = CgModuleUtils::get_default_app_data();
+	$options    = CgModuleUtils:: prepare_app_options();
+	$inputElm   = create_select_elm( $options, $defAppData->type, CG_BUTTON_APP_TYPE );
+	$content    = StringUtils::replace_all( $content, '[APP_TYPES_INPUT]', $inputElm );
 
-	$options = array( 'Enable', 'Disable' );
+	$options  = array( 'Enable' => 'Enable', 'Disable' => 'Disable' );
 	$inputElm = create_select_elm( $options, 'Enable', CG_BUTTON_ENABLE );
-	$content = StringUtils::replace_all( $content, '[BUTTON_ENABLE_INPUT]', $inputElm );
+	$content  = StringUtils::replace_all( $content, '[BUTTON_ENABLE_INPUT]', $inputElm );
 
 	$inputElm = create_input_element( 'text', CG_BUTTON_LABEL );
-	$content = StringUtils::replace_all( $content, '[BUTTON_LABEL_INPUT]', $inputElm->to_string() );
+	$content  = StringUtils::replace_all( $content, '[BUTTON_LABEL_INPUT]', $inputElm->to_string() );
 
 	$inputElm = create_input_element(
 		'text', CG_BUTTON_STYLE,
@@ -239,14 +226,11 @@ function cg_button_settings_page() {
 			'style' => 'resize: none; width: 350px; height: 150px;',
 		)
 	);
-	$content = StringUtils::replace_all( $content, '[BUTTON_STYLE_INPUT]', $inputElm->to_string() );
+	$content  = StringUtils::replace_all( $content, '[BUTTON_STYLE_INPUT]', $inputElm->to_string() );
 
-	$themes = array(
-		'blitzer', 'cupertino', 'darkness', 'eggplant', 'excite-bike', 'flick',
-		'humanity', 'lightness', 'overcast', 'pepper-grinder', 'redmond', 'smoothness', 'sunny', 'vader',
-	);
+	$themes   = CGModuleUtils::prepare_themes_options();
 	$inputElm = create_select_elm( $themes, CG_BUTTON_DEFAULT_THEME, CG_BUTTON_THEME );
-	$content = StringUtils::replace_all( $content, '[BUTTON_THEMES_INPUT]', $inputElm );
+	$content  = StringUtils::replace_all( $content, '[BUTTON_THEMES_INPUT]', $inputElm );
 
 	echo( $content );
 	//After we finish with the form content we use wordpress submit button function and then close the form.
@@ -267,4 +251,5 @@ function cg_button_add_rate_link() {
 		wp_enqueue_script( 'cg-rate-script' );
 	}
 }
+
 add_action( 'admin_enqueue_scripts', 'cg_button_add_rate_link' );

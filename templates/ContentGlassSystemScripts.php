@@ -23,8 +23,7 @@
         js.id = "cg-api";
         js.type = 'text/javascript';
         js.async = true;
-        js.src = "<?php echo $_REQUEST['CG_SERVER'] ?>" + (port != null ? ":" + port : "")
-                + "/server_api/s1/application/load/cg_api?app_id=<?php echo $_REQUEST['APP_ID'] ?>&access_token=<?php echo $_REQUEST['ACCESS_TOKEN'] ?>&RHZ_SESSION_ID=<?php echo $_REQUEST['SESSION_ID'] ?>&VERSION=<?php echo $_REQUEST['CG_VERSION'] ?>" + dev;
+        js.src = "<?php echo $_REQUEST['CG_SERVER'] ?>/server_api/s1/application/load/cg_api?app_id=<?php echo $_REQUEST['APP_ID'] ?>&RHZ_SESSION_ID=<?php echo $_REQUEST['SESSION_ID'] ?>&VERSION=<?php echo $_REQUEST['CG_VERSION'] ?>" + dev;
         var s = document.getElementsByTagName('script')[0];
         s.parentNode.insertBefore(js, s);
     }());

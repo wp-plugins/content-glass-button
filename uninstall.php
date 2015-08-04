@@ -15,7 +15,9 @@ if ( !defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 
 require_once( 'utils/ModuleUtils.php' );
 
-delete_option( CG_BUTTON_APP_ID );
+delete_option( CG_BUTTON_APP_VERSIONS );
+delete_option( CG_BUTTON_APP_DATA );
+delete_option( CG_BUTTON_APP_TYPE );
 delete_option( CG_BUTTON_API_KEY );
 delete_option( CG_BUTTON_THEME );
 delete_option( CG_BUTTON_VERSION );
